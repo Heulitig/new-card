@@ -26,10 +26,11 @@
 
 
 -- docs.home-card: John Doe
+c: new-card
 package-name: new-card
 package-full-name: heulitig.github.io/new-card
 license-url: https://github.com/heulitig/new-card/blob/main/LICENSE
-title: Software Developer
+title: Software Dev
 phone-no: +123-4567890
 email: heulitig@xyz.com
 address: 123 Anywhere, Any City
@@ -38,7 +39,8 @@ github: https://github.com/heulitig/new-card
 ;; ---------------- DEFINE YOUR CARD COMPONENTS -----------------------
 ;; Implement your card and card-back components below
 
-/-- component front:
+
+-- component front:
 caption name:
 optional string company-name:
 optional string title:
@@ -51,9 +53,28 @@ optional string company-slogan:
 optional ftd.image-src qr-code:
 optional string website:
 
-;; <YOUR IMPLEMENTATION HERE>
+-- ftd.column:
+width.fixed.px: 700
+height.fixed.px: 350
+spacing.fixed.px: 10
+align-content: center
 
-/-- end: front
+-- ftd.text: $front.name
+role: $inherited.types.heading-medium
+color: $inherited.colors.text
+
+-- ftd.text: $front.title
+role: $inherited.types.heading-medium
+color: $inherited.colors.text
+
+-- ftd.image:
+if: { front.logo != NULL }
+src: $front.logo
+width.fixed.px: 200
+
+-- end: ftd.column
+
+-- end: front
 
 
 
@@ -64,7 +85,7 @@ optional string website:
 
 
 
-/-- component back:
+-- component back:
 optional caption name:
 optional string company-name:
 optional string title:
@@ -77,9 +98,19 @@ optional string company-slogan:
 optional ftd.image-src qr-code:
 optional string website:
 
-;; <YOUR IMPLEMENTATION HERE>
+-- ftd.row:
+width.fixed.px: 700
+height.fixed.px: 350
+align-content: center
 
-/-- end: back
+-- ftd.image:
+if: { back.logo != NULL }
+src: $back.logo
+width.fixed.px: 200
+
+-- end: ftd.row
+
+-- end: back
 
 
 
